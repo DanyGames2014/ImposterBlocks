@@ -4,6 +4,7 @@
   "package": "net.danygames2014.imposterblocks.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockItemMixin"
   ],
   "server": [
   ],
