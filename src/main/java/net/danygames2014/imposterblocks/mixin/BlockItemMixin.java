@@ -19,7 +19,7 @@ public class BlockItemMixin {
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir){
         if (world.getBlockId(x, y, z) == BlockListener.camoBlockId) {
-           if (itemStack.getItem() != BlockListener.camoBlock.asItem()) {
+           if ((itemStack.getItem() != BlockListener.camoBlock.asItem()) && (((BlockItem)itemStack.getItem()).getBlock().isFullCube())) {
                 CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)world.method_1777(x,y,z);
                 tileEntity.blockTexture = BlockRegistry.INSTANCE.getId(((BlockItem)itemStack.getItem()).getBlock());
                 tileEntity.blockTextureMeta = itemStack.getDamage();
