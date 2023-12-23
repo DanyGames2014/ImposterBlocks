@@ -31,12 +31,12 @@ public class CamoBlock extends TemplateBlockWithEntity {
     }
 
     @Override
-    public boolean isOpaque() {
+    public boolean isOpaque() { // Slight Performance Impact, fixes Glass, Leaves etc. causing x-ray glitch
         return false;
     }
 
     @Override
-    public int getColorMultiplier(BlockView blockView, int x, int y, int z) {
+    public int getColorMultiplier(BlockView blockView, int x, int y, int z) { // Fixes Leaves Coloring
         CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)blockView.method_1777(x,y,z);
 
         if(tileEntity.block == null){
