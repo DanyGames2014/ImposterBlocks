@@ -35,9 +35,21 @@ public class CamoWrench extends TemplateItem {
 
                     } else if (id == BlockListener.camoSlabBottom.id) {
                         System.out.println(" SLAB BOTTOM");
-                        world.setBlock(x,y,z,BlockListener.camoSlabSide.id);
+                        world.setBlock(x,y,z,BlockListener.camoSlabSide1.id);
 
-                    } else if (id == BlockListener.camoSlabSide.id) {
+                    } else if (id == BlockListener.camoSlabSide1.id) {
+                        System.out.println(" SLAB SIDE");
+                        world.setBlock(x,y,z,BlockListener.camoSlabSide2.id);
+
+                    } else if (id == BlockListener.camoSlabSide2.id) {
+                        System.out.println(" SLAB SIDE");
+                        world.setBlock(x,y,z,BlockListener.camoSlabSide3.id);
+
+                    } else if (id == BlockListener.camoSlabSide3.id) {
+                        System.out.println(" SLAB SIDE");
+                        world.setBlock(x,y,z,BlockListener.camoSlabSide4.id);
+
+                    } else if (id == BlockListener.camoSlabSide4.id) {
                         System.out.println(" SLAB SIDE");
                         world.setBlock(x,y,z,BlockListener.camoSlabTop.id);
                     }

@@ -7,6 +7,7 @@ import net.minecraft.world.BlockView;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.template.block.TemplateBlockWithEntity;
 import net.modificationstation.stationapi.api.util.Identifier;
+import net.modificationstation.stationapi.api.util.Namespace;
 
 public class CamoBlock extends TemplateBlockWithEntity {
 
@@ -37,16 +38,8 @@ public class CamoBlock extends TemplateBlockWithEntity {
         return false;
     }
 
-    /*
-    @Override
-    public int getColorMultiplier(BlockView blockView, int x, int y, int z) { // Fixes Leaves Coloring
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)blockView.method_1777(x,y,z);
-
-        if(tileEntity.block == null){
-            tileEntity.block = BlockRegistry.INSTANCE.get(tileEntity.blockTexture);
-        }
-
-        return tileEntity.block.getColor(tileEntity.blockTextureMeta);
-    }
-    */
+//    @Override
+//    public int getColorMultiplier(BlockView blockView, int x, int y, int z) { // Fixes Leaves Coloring
+//        return BlockRegistry.INSTANCE.get(Namespace.MINECRAFT.id("leaves")).getColorMultiplier(blockView, x, y, z);
+//    }
 }
