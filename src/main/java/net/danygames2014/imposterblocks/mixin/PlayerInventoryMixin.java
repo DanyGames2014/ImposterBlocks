@@ -18,9 +18,11 @@ public abstract class PlayerInventoryMixin {
 
     @Inject(method = "method_692", at = @At("HEAD"), cancellable = true)
     public void wrenchScroll(int scrollDirection, CallbackInfo ci){
-        if(this.getSelectedItem().itemId == ItemListener.wrenchItem.id){
-            player.method_490(""+scrollDirection);
-            ci.cancel();
+        if(this.getSelectedItem() != null) {
+            if (this.getSelectedItem().itemId == ItemListener.wrenchItem.id && player.method_1373()) {
+                player.method_490("" + scrollDirection);
+                ci.cancel();
+            }
         }
     }
 }
