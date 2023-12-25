@@ -11,7 +11,9 @@ import net.modificationstation.stationapi.api.util.Identifier;
 public class CamoBlock extends TemplateBlockWithEntity {
 
     public CamoBlock(Identifier identifier) {
-        super(identifier, Material.STONE);
+        super(identifier, Material.WOOD);
+        this.setHardness(0.2F);
+        this.setResistance(2F);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.danygames2014.imposterblocks.init;
 
 import net.danygames2014.imposterblocks.block.CamoBlock;
+import net.danygames2014.imposterblocks.block.CamoSlab;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
@@ -15,10 +16,14 @@ public class BlockListener {
 
     public static Block camoBlock;
     public static int camoBlockId;
+    public static Block camoSlab;
+    public static int camoSlabId;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event){
         camoBlock = new CamoBlock(MOD_ID.id("camo_block")).setTranslationKey(MOD_ID,"camo_block");
         camoBlockId = camoBlock.id;
+        camoSlab = new CamoSlab(MOD_ID.id("camo_slab")).setTranslationKey(MOD_ID,"camo_slab");
+        camoSlabId = camoSlab.id;
     }
 }

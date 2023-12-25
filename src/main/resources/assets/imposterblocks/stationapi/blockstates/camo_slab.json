@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "slab_type=top": { "model": "imposterblocks:block/camo_slab_top"},
+    "slab_type=bottom": { "model": "imposterblocks:block/camo_slab_bottom"}
+  }
+}
