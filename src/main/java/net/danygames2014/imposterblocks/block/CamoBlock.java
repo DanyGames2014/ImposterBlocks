@@ -20,11 +20,11 @@ public class CamoBlock extends TemplateBlockWithEntity {
     public int getTextureId(BlockView blockView, int x, int y, int z, int side) {
         CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)blockView.method_1777(x,y,z);
 
-        if(tileEntity.block == null){
-            tileEntity.block = BlockRegistry.INSTANCE.get(tileEntity.blockTexture);
+        if(!tileEntity.cached){
+            tileEntity.buildCache();
         }
 
-        return tileEntity.block.getTexture(side, tileEntity.blockTextureMeta);
+        return tileEntity.textureIdCache[side];
     }
 
     @Override
@@ -37,6 +37,7 @@ public class CamoBlock extends TemplateBlockWithEntity {
         return false;
     }
 
+    /*
     @Override
     public int getColorMultiplier(BlockView blockView, int x, int y, int z) { // Fixes Leaves Coloring
         CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)blockView.method_1777(x,y,z);
@@ -47,4 +48,5 @@ public class CamoBlock extends TemplateBlockWithEntity {
 
         return tileEntity.block.getColor(tileEntity.blockTextureMeta);
     }
+    */
 }

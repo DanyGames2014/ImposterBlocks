@@ -51,7 +51,8 @@ public class CamoWrench extends TemplateItem {
 
             // Player Sneaking - Texture Mode
             } else {
-                player.method_490(side+"");
+                player.method_490("Side : " + side + " | Texture : " + tileEntity.textureIdentifier[side] + " | Meta : " + tileEntity.textureMeta[side] + " | Cache : " + tileEntity.textureIdCache[side]);
+                tileEntity.cycleTextureOnSide(side);
             }
 
             world.method_243(x,y,z); // Update The Block
