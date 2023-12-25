@@ -4,10 +4,8 @@ import net.danygames2014.imposterblocks.tileentity.CamoBlockTileEntity;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.BlockView;
-import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.template.block.TemplateBlockWithEntity;
 import net.modificationstation.stationapi.api.util.Identifier;
-import net.modificationstation.stationapi.api.util.Namespace;
 
 public class CamoBlock extends TemplateBlockWithEntity {
 

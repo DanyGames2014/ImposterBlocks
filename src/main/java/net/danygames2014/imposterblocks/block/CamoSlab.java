@@ -10,7 +10,7 @@ public class CamoSlab extends CamoBlock {
         SIDE_1,
         SIDE_2,
         SIDE_3,
-        SIDE_4;
+        SIDE_4
     }
 
     public CamoSlab(Identifier identifier, SlabType SlabType) {
