@@ -15,15 +15,15 @@ public class BlockListener {
     Namespace MOD_ID = Null.get();
 
     public static Block camoBlock;
-    public static int camoBlockId;
-    public static Block camoSlab;
-    public static int camoSlabId;
+    public static Block camoSlabTop;
+    public static Block camoSlabBottom;
+    public static Block camoSlabSide;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event){
         camoBlock = new CamoBlock(MOD_ID.id("camo_block")).setTranslationKey(MOD_ID,"camo_block");
-        camoBlockId = camoBlock.id;
-        camoSlab = new CamoSlab(MOD_ID.id("camo_slab")).setTranslationKey(MOD_ID,"camo_slab");
-        camoSlabId = camoSlab.id;
+        camoSlabTop = new CamoSlab(MOD_ID.id("camo_slab_top"), CamoSlab.SlabType.TOP).setTranslationKey(MOD_ID,"camo_slab_top");
+        camoSlabBottom = new CamoSlab(MOD_ID.id("camo_slab_bottom"), CamoSlab.SlabType.BOTTOM).setTranslationKey(MOD_ID,"camo_slab_bottom");
+        camoSlabSide = new CamoSlab(MOD_ID.id("camo_slab_side"), CamoSlab.SlabType.SIDE).setTranslationKey(MOD_ID,"camo_slab_side");
     }
 }

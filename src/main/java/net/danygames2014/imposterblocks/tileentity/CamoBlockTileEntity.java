@@ -11,6 +11,9 @@ public class CamoBlockTileEntity extends BlockEntity {
     public int blockTextureMeta = 0;
     public Block block = null;
 
+    // Cache
+    public int[] textureId = {0, 0, 0, 0, 0, 0};
+
     @Override
     public void writeNbt(NbtCompound nbtCompound) {
         nbtCompound.putString("blockIdentifier", blockTexture.toString());

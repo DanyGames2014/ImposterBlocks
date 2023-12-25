@@ -8,28 +8,24 @@ import net.modificationstation.stationapi.api.state.property.EnumProperty;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.StringIdentifiable;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class CamoSlab extends CamoBlock {
 
-    public enum SlabType implements StringIdentifiable {
+    public enum SlabType {
         TOP,
-        BOTTOM;
-
-        @Override
-        public String asString() {
-            return name().toLowerCase();
-        }
+        BOTTOM,
+        SIDE;
     }
 
-    public static final EnumProperty<SlabType> SLAB_TYPE = EnumProperty.of("slab_type", SlabType.class);
-
-    public CamoSlab(Identifier identifier) {
+    public CamoSlab(Identifier identifier, SlabType SlabType) {
         super(identifier);
-        this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         this.setOpacity(255);
-    }
-
-    @Override
-    public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(SLAB_TYPE);
+        switch (SlabType){
+            case TOP -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            case BOTTOM -> this.setBoundingBox(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+            case SIDE -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
+        }
     }
 }
