@@ -22,7 +22,7 @@ public class CamoBlockTileEntity extends BlockEntity {
     public boolean cached = false;
     public int[] textureIdCache = {0, 0, 0, 0, 0, 0};
 
-    public void buildCache(){
+    public void buildCache() {
         BlockRegistry registry = BlockRegistry.INSTANCE;
         for (int i = 0; i < 6; i++) {
             textureIdCache[i] = registry.get(textureIdentifier[i]).getTexture(textureSide[i], textureMeta[i]);
@@ -30,7 +30,7 @@ public class CamoBlockTileEntity extends BlockEntity {
         cached = true;
     }
 
-    public void setTextureBlock(Identifier identifier, int meta){
+    public void setTextureBlock(Identifier identifier, int meta) {
         for (int i = 0; i < 6; i++) {
             textureIdentifier[i] = identifier;
             textureMeta[i] = meta;
@@ -39,16 +39,16 @@ public class CamoBlockTileEntity extends BlockEntity {
         buildCache();
     }
 
-    public void setTextureSide(Identifier identifier, int meta, int side){
+    public void setTextureSide(Identifier identifier, int meta, int side) {
         textureIdentifier[side] = identifier;
         textureMeta[side] = meta;
         textureSide[side] = side;
         buildCache();
     }
 
-    public void cycleTextureOnSide(int side){
-        textureSide[side] = textureSide[side]+1;
-        if(textureSide[side] > 5){
+    public void cycleTextureOnSide(int side) {
+        textureSide[side] = textureSide[side] + 1;
+        if (textureSide[side] > 5) {
             textureSide[side] = 0;
         }
         buildCache();

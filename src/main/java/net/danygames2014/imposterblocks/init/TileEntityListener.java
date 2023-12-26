@@ -6,7 +6,7 @@ import net.modificationstation.stationapi.api.event.block.entity.BlockEntityRegi
 
 public class TileEntityListener {
     @EventListener
-    public void registerTileEntities(BlockEntityRegisterEvent event){
+    public void registerTileEntities(BlockEntityRegisterEvent event) {
         event.register(CamoBlockTileEntity.class, "camo_block");
     }
 }

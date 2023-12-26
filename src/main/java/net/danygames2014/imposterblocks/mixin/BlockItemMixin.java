@@ -16,26 +16,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {
-    @Shadow private int itemId;
+    @Shadow
+    private int itemId;
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir){
+    public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(x, y, z).isIn(ImposterBlocks.camoBlockTag)) {
-           if (!(itemStack.isIn(ImposterBlocks.camoBlockItemTag)) && (((BlockItem)itemStack.getItem()).getBlock().isFullCube())) {
-                CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)world.method_1777(x,y,z);
+            if (!(itemStack.isIn(ImposterBlocks.camoBlockItemTag)) && (((BlockItem) itemStack.getItem()).getBlock().isFullCube())) {
+                CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x, y, z);
 
                 // Player is not sneaking - set entire block
-                if(!player.method_1373()){
-                    tileEntity.setTextureBlock(BlockRegistry.INSTANCE.getId(((BlockItem)itemStack.getItem()).getBlock()), itemStack.getDamage());
-                // Player is sneaking - set single side
-                }else{
-                    tileEntity.setTextureSide(BlockRegistry.INSTANCE.getId(((BlockItem)itemStack.getItem()).getBlock()), itemStack.getDamage(), side);
+                if (!player.method_1373()) {
+                    tileEntity.setTextureBlock(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage());
+                    // Player is sneaking - set single side
+                } else {
+                    tileEntity.setTextureSide(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage(), side);
                 }
 
                 tileEntity.buildCache();
-                world.method_243(x,y,z);
+                world.method_243(x, y, z);
                 cir.cancel();
-           }
+            }
         }
     }
 }

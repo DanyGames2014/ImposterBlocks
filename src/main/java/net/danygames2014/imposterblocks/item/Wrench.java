@@ -8,8 +8,5 @@ import net.modificationstation.stationapi.api.util.Identifier;
 public class Wrench extends WrenchBase {
     public Wrench(Identifier identifier) {
         super(identifier);
-        this.addWrenchMode(WrenchMode.MODE_ROTATE);
-        this.addWrenchMode(WrenchModeListener.MODE_TEXTURE);
-        this.addWrenchMode(WrenchModeListener.MODE_DEBUG);
     }
 }

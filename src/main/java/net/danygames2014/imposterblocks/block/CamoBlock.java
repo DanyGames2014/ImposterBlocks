@@ -23,9 +23,9 @@ public class CamoBlock extends TemplateBlockWithEntity implements Wrenchable {
 
     @Override
     public int getTextureId(BlockView blockView, int x, int y, int z, int side) {
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity)blockView.method_1777(x,y,z);
+        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) blockView.method_1777(x, y, z);
 
-        if(!tileEntity.cached){
+        if (!tileEntity.cached) {
             tileEntity.buildCache();
         }
 
@@ -44,15 +44,15 @@ public class CamoBlock extends TemplateBlockWithEntity implements Wrenchable {
 
     @Override
     public void wrenchRightClick(ItemStack stack, PlayerEntity player, boolean isSneaking, World world, int x, int y, int z, int side, WrenchMode wrenchMode) {
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x,y,z);
+        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x, y, z);
 
-        if(wrenchMode == WrenchModeListener.MODE_TEXTURE){
+        if (wrenchMode == WrenchModeListener.MODE_TEXTURE) {
             tileEntity.cycleTextureOnSide(side);
         } else if (wrenchMode == WrenchModeListener.MODE_DEBUG) {
             player.method_490("Side : " + side + " | Texture : " + tileEntity.textureIdentifier[side] + " | Meta : " + tileEntity.textureMeta[side] + " | Cache : " + tileEntity.textureIdCache[side]);
         }
 
-        world.method_243(x,y,z); // Update The Block
+        world.method_243(x, y, z); // Update The Block
     }
 
     //    @Override
