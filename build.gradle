@@ -24,6 +24,7 @@ repositories {
 	// for more information about repositories.
 
 	// Used for the fabric toolchain in this project.
+	mavenLocal()
 	maven {
 		name = 'Babric'
 		url = 'https://maven.glass-launcher.net/babric'
@@ -75,6 +76,7 @@ dependencies {
 	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
 
 	modImplementation("com.github.DanyGames2014:UniversalWrench:${project.uniwrench_version}")
+//	modImplementation("net.danygames2014:UniversalWrench:${project.uniwrench_version}")
 
 	// Optional, but convenient mods for mod creators and users alike.
 	modImplementation("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {

@@ -15,9 +15,11 @@
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
+      "net.danygames2014.imposterblocks.ImposterBlocks",
+      "net.danygames2014.imposterblocks.init.ItemListener",
       "net.danygames2014.imposterblocks.init.BlockListener",
       "net.danygames2014.imposterblocks.init.TileEntityListener",
-      "net.danygames2014.imposterblocks.init.ItemListener"
+      "net.danygames2014.imposterblocks.init.WrenchModeListener"
     ],
     "stationapi:event_bus_client": [
     ],
@@ -29,6 +31,7 @@
   ],
 
   "depends": {
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-beta.7.3",
+    "uniwrench": ">=1.1.4"
   }
 }
