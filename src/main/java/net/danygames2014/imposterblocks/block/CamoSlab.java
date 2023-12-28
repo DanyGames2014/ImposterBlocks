@@ -7,33 +7,28 @@ import net.danygames2014.uniwrench.api.Wrenchable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Box;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 public class CamoSlab extends CamoBlock implements Wrenchable {
 
-    public enum SlabType {
-        TOP,
-        BOTTOM,
-        SIDE_1,
-        SIDE_2,
-        SIDE_3,
-        SIDE_4
-    }
-
-    private SlabType type;
-
-    public CamoSlab(Identifier identifier, SlabType SlabType) {
+    public CamoSlab(Identifier identifier) {
         super(identifier);
         this.setOpacity(0);
-        this.type = SlabType;
-        switch (SlabType) {
-            case TOP -> this.setBoundingBox(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
-            case BOTTOM -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-            case SIDE_1 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
-            case SIDE_2 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.5F);
-            case SIDE_3 -> this.setBoundingBox(0.5F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            case SIDE_4 -> this.setBoundingBox(0.0F, 0.0F, 0.5F, 1.0F, 1.0F, 1.0F);
+        this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+    }
+
+    @Override
+    public void updateBoundingBox(BlockView blockView, int x, int y, int z) {
+        switch (blockView.getBlockMeta(x, y, z)){
+            case 0 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            case 1 -> this.setBoundingBox(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+            case 2 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
+            case 3 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.5F);
+            case 4 -> this.setBoundingBox(0.5F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            case 5 -> this.setBoundingBox(0.0F, 0.0F, 0.5F, 1.0F, 1.0F, 1.0F);
         }
     }
 
@@ -63,14 +58,9 @@ public class CamoSlab extends CamoBlock implements Wrenchable {
         CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x, y, z);
 
         if (wrenchMode == WrenchMode.MODE_ROTATE) {
-            switch (type) {
-                case BOTTOM -> world.setBlock(x, y, z, BlockListener.camoSlabTop.id);
-                case TOP -> world.setBlock(x, y, z, BlockListener.camoSlabSide1.id);
-                case SIDE_1 -> world.setBlock(x, y, z, BlockListener.camoSlabSide2.id);
-                case SIDE_2 -> world.setBlock(x, y, z, BlockListener.camoSlabSide3.id);
-                case SIDE_3 -> world.setBlock(x, y, z, BlockListener.camoSlabSide4.id);
-                case SIDE_4 -> world.setBlock(x, y, z, BlockListener.camoSlabBottom.id);
-            }
+            int meta = world.getBlockMeta(x,y,z)+1;
+            world.method_223(x, y, z, meta > 5 ? 0 : meta);
+            world.method_243(x, y, z);
         }
 
         tileEntity.method_1073();
