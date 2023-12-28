@@ -2,8 +2,6 @@ package net.danygames2014.imposterblocks.mixin;
 
 import net.danygames2014.imposterblocks.ImposterBlocks;
 import net.danygames2014.imposterblocks.block.CamoBlock;
-import net.danygames2014.imposterblocks.block.CamoSlab;
-import net.danygames2014.imposterblocks.init.BlockListener;
 import net.danygames2014.imposterblocks.tileentity.CamoBlockTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -18,9 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {
-    @Shadow
-    private int itemId;
-
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(x, y, z).getBlock() instanceof CamoBlock) {

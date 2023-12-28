@@ -1,13 +1,11 @@
 package net.danygames2014.imposterblocks.block;
 
-import net.danygames2014.imposterblocks.init.BlockListener;
 import net.danygames2014.imposterblocks.tileentity.CamoBlockTileEntity;
 import net.danygames2014.uniwrench.api.WrenchMode;
 import net.danygames2014.uniwrench.api.Wrenchable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;

@@ -1,7 +1,5 @@
 package net.danygames2014.imposterblocks.init;
 
-import net.danygames2014.imposterblocks.ImposterBlocks;
-import net.danygames2014.imposterblocks.item.Wrench;
 import net.danygames2014.uniwrench.api.WrenchMode;
 import net.danygames2014.uniwrench.api.event.UniversalWrenchModeEvent;
 import net.danygames2014.uniwrench.api.event.WrenchModeRegistryEvent;
@@ -10,6 +8,7 @@ import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Namespace;
 import net.modificationstation.stationapi.api.util.Null;
 
+@SuppressWarnings("unused")
 public class WrenchModeListener {
     @Entrypoint.Namespace
     public static final Namespace MOD_ID = Null.get();

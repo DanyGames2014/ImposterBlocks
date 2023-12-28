@@ -10,6 +10,7 @@ import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Namespace;
 import net.modificationstation.stationapi.api.util.Null;
 
+@SuppressWarnings("unused")
 public class BlockListener {
 
     @Entrypoint.Namespace
