@@ -9,13 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {
+    @SuppressWarnings("CancellableInjectionUsage")
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(x, y, z).getBlock() instanceof CamoBlock) {
