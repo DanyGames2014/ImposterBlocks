@@ -1,11 +1,7 @@
 {
   "values": [
     "imposterblocks:camo_block",
-    "imposterblocks:camo_slab_top",
-    "imposterblocks:camo_slab_bottom",
-    "imposterblocks:camo_slab_side1",
-    "imposterblocks:camo_slab_side2",
-    "imposterblocks:camo_slab_side3",
-    "imposterblocks:camo_slab_side4"
+    "imposterblocks:camo_slab",
+    "imposterblocks:camo_stairs"
   ]
 }

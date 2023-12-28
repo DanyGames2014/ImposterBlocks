@@ -1,0 +1,6 @@
+{
+  "parent": "imposterblocks:block/camo_slab",
+  "textures": {
+    "all": "minecraft:block/bedrock"
+  }
+}

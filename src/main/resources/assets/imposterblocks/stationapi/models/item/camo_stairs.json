@@ -1,0 +1,6 @@
+{
+  "parent": "imposterblocks:block/camo_stairs",
+  "textures": {
+    "all": "minecraft:block/bedrock"
+  }
+}
