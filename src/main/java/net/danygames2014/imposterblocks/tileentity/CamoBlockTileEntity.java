@@ -1,5 +1,6 @@
 package net.danygames2014.imposterblocks.tileentity;
 
+import net.danygames2014.imposterblocks.ImposterBlocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
@@ -22,9 +23,16 @@ public class CamoBlockTileEntity extends BlockEntity {
     public boolean cached = false;
     public int[] textureIdCache = {0, 0, 0, 0, 0, 0};
 
+    // Default
+    public static final Identifier DEFAULT_ID = Namespace.MINECRAFT.id("wool");
+
     public void buildCache() {
         BlockRegistry registry = BlockRegistry.INSTANCE;
         for (int i = 0; i < 6; i++) {
+            if (!registry.containsId(textureIdentifier[i])) {
+                ImposterBlocks.LOGGER.warn("Camo block had invalid modifier " + textureIdentifier[i]);
+                textureIdentifier[i] = DEFAULT_ID;
+            }
             textureIdCache[i] = registry.get(textureIdentifier[i]).getTexture(textureSide[i], textureMeta[i]);
         }
         cached = true;
