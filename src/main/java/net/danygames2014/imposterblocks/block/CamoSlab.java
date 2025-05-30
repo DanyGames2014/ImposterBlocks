@@ -33,7 +33,7 @@ public class CamoSlab extends CamoBlock implements Wrenchable {
     @Override
     public void onSteppedOn(World world, int x, int y, int z, Entity entity) {
         if (entity instanceof PlayerEntity) {
-            CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x, y, z);
+            CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
             int chompiness = 0;
 
             for (int i = 0; i < 6; i++) {
@@ -44,27 +44,29 @@ public class CamoSlab extends CamoBlock implements Wrenchable {
 
             if (chompiness > 0) {
                 entity.damage(null, chompiness * 2);
-                ((PlayerEntity) entity).method_490("CHOMP!");
+                ((PlayerEntity) entity).sendMessage("CHOMP!");
             }
         }
     }
 
     @Override
-    public void wrenchRightClick(ItemStack stack, PlayerEntity player, boolean isSneaking, World world, int x, int y, int z, int side, WrenchMode wrenchMode) {
+    public boolean wrenchRightClick(ItemStack stack, PlayerEntity player, boolean isSneaking, World world, int x, int y, int z, int side, WrenchMode wrenchMode) {
         super.wrenchRightClick(stack, player, isSneaking, world, x, y, z, side, wrenchMode);
 
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x, y, z);
+        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
 
         if (wrenchMode == WrenchMode.MODE_ROTATE) {
             int meta = world.getBlockMeta(x,y,z)+1;
-            world.method_223(x, y, z, meta > 5 ? 0 : meta);
-            world.method_243(x, y, z);
+            world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, meta > 5 ? 0 : meta);
+            world.blockUpdateEvent(x, y, z);
         }
 
-        tileEntity.method_1073();
-        world.method_157(x, y, z, tileEntity);
+        tileEntity.cancelRemoval();
+        world.setBlockEntity(x, y, z, tileEntity);
 
-        world.method_243(x, y, z); // Update The Block
+        world.blockUpdateEvent(x, y, z); // Update The Block
+        
+        return true;
     }
 
     @Override

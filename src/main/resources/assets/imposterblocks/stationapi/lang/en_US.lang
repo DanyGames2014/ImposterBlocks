@@ -1,12 +1,12 @@
-item.wrench.name=Camo Wrench
+item.imposterblocks.wrench.name=Camo Wrench
 
-tile.camo_block.name=Camo Block
-tile.camo_slab_top.name=Camo Top Slab
-tile.camo_slab_bottom.name=Camo Slab
-tile.camo_slab_side1.name=Camo Vertical Slab
-tile.camo_slab_side2.name=Camo Vertical Slab
-tile.camo_slab_side3.name=Camo Vertical Slab
-tile.camo_slab_side4.name=Camo Vertical Slab
+tile.imposterblocks.camo_block.name=Camo Block
+tile.imposterblocks.camo_slab_top.name=Camo Top Slab
+tile.imposterblocks.camo_slab_bottom.name=Camo Slab
+tile.imposterblocks.camo_slab_side1.name=Camo Vertical Slab
+tile.imposterblocks.camo_slab_side2.name=Camo Vertical Slab
+tile.imposterblocks.camo_slab_side3.name=Camo Vertical Slab
+tile.imposterblocks.camo_slab_side4.name=Camo Vertical Slab
 
-wrenchmode.texture.name=Texture
-wrenchmode.debug.name=Imposter Blocks Debug
+wrenchmode.imposterblocks.texture.name=Texture
+wrenchmode.imposterblocks.debug.name=Imposter Blocks Debug

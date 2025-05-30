@@ -8,13 +8,12 @@ import net.minecraft.block.Block;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Namespace;
-import net.modificationstation.stationapi.api.util.Null;
 
 @SuppressWarnings("unused")
 public class BlockListener {
 
     @Entrypoint.Namespace
-    Namespace MOD_ID = Null.get();
+    public static Namespace NAMESPACE;
 
     public static Block camoBlock;
     public static Block camoSlab;
@@ -22,8 +21,8 @@ public class BlockListener {
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
-        camoBlock = new CamoBlock(MOD_ID.id("camo_block")).setTranslationKey(MOD_ID, "camo_block");
-        camoSlab = new CamoSlab(MOD_ID.id("camo_slab")).setTranslationKey(MOD_ID, "camo_slab");
-        camoStairs = new CamoStairs(MOD_ID.id("camo_stairs")).setTranslationKey(MOD_ID, "camo_stairs");
+        camoBlock = new CamoBlock(NAMESPACE.id("camo_block")).setTranslationKey(NAMESPACE, "camo_block");
+        camoSlab = new CamoSlab(NAMESPACE.id("camo_slab")).setTranslationKey(NAMESPACE, "camo_slab");
+        camoStairs = new CamoStairs(NAMESPACE.id("camo_stairs")).setTranslationKey(NAMESPACE, "camo_stairs");
     }
 }

@@ -20,10 +20,10 @@ public class BlockItemMixin {
     public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(x, y, z).getBlock() instanceof CamoBlock) {
             if (!(itemStack.isIn(ImposterBlocks.camoBlockItemTag)) && (((BlockItem) itemStack.getItem()).getBlock().isFullCube())) {
-                CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.method_1777(x, y, z);
+                CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
 
                 // Player is not sneaking - set entire block
-                if (!player.method_1373()) {
+                if (!player.isSneaking()) {
                     tileEntity.setTextureBlock(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage());
                     // Player is sneaking - set single side
                 } else {
@@ -31,7 +31,7 @@ public class BlockItemMixin {
                 }
 
                 tileEntity.buildCache();
-                world.method_243(x, y, z);
+                world.blockUpdateEvent(x, y, z);
                 cir.cancel();
             }
         }

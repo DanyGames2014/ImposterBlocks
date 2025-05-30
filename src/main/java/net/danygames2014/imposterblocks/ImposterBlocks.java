@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ImposterBlocks {
     @Entrypoint.Logger
-    public static final Logger LOGGER = Null.get();
+    public static Logger LOGGER;
+    
     public static TagKey<Item> camoBlockItemTag = TagKey.of(ItemRegistry.INSTANCE.getKey(), Identifier.of("imposterblocks:camo_blocks"));
 }
