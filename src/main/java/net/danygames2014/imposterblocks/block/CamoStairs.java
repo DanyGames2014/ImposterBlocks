@@ -22,14 +22,13 @@ public class CamoStairs extends CamoBlock implements Wrenchable {
 
     @Override
     public boolean wrenchRightClick(ItemStack stack, PlayerEntity player, boolean isSneaking, World world, int x, int y, int z, int side, WrenchMode wrenchMode) {
-        int meta = world.getBlockMeta(x,y,z)+1;
+        int meta = world.getBlockMeta(x, y, z) + 1;
         world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, meta > 3 ? 0 : meta);
         world.blockUpdateEvent(x, y, z);
         return true;
     }
 
-    //IDK
-    @Environment(value= EnvType.CLIENT)
+    @Environment(value = EnvType.CLIENT)
     public int getRenderType() {
         return 10;
     }
@@ -74,17 +73,12 @@ public class CamoStairs extends CamoBlock implements Wrenchable {
     }
 
     @Override
-    public void onPlaced(World world, int x, int y, int z, int side) {
-        System.out.println(side);
-    }
-
-    @Override
     public void onPlaced(World world, int x, int y, int z, LivingEntity placer) {
-        switch (MathHelper.floor((double)(placer.yaw * 4.0f / 360.0f) + 0.5) & 3){
-            case 0 -> world.setBlockMetaWithoutNotifyingNeighbors(x,y,z,2);
-            case 1 -> world.setBlockMetaWithoutNotifyingNeighbors(x,y,z,1);
-            case 2 -> world.setBlockMetaWithoutNotifyingNeighbors(x,y,z,3);
-            case 3 -> world.setBlockMetaWithoutNotifyingNeighbors(x,y,z,0);
+        switch (MathHelper.floor((double) (placer.yaw * 4.0f / 360.0f) + 0.5) & 3) {
+            case 0 -> world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, 2);
+            case 1 -> world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, 1);
+            case 2 -> world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, 3);
+            case 3 -> world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, 0);
         }
 
         world.blockUpdateEvent(x, y, z);

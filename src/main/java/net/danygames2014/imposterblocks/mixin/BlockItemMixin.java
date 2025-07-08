@@ -15,22 +15,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {
-    @SuppressWarnings("CancellableInjectionUsage")
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     public void useOnCamoBlock(ItemStack itemStack, PlayerEntity player, World world, int x, int y, int z, int side, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(x, y, z).getBlock() instanceof CamoBlock) {
             if (!(itemStack.isIn(ImposterBlocks.camoBlockItemTag)) && (((BlockItem) itemStack.getItem()).getBlock().isFullCube())) {
-                CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
+                CamoBlockTileEntity blockEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
 
                 // Player is not sneaking - set entire block
                 if (!player.isSneaking()) {
-                    tileEntity.setTextureBlock(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage());
+                    blockEntity.setTextureBlock(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage());
                     // Player is sneaking - set single side
                 } else {
-                    tileEntity.setTextureSide(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage(), side);
+                    blockEntity.setTextureSide(BlockRegistry.INSTANCE.getId(((BlockItem) itemStack.getItem()).getBlock()), itemStack.getDamage(), side);
                 }
 
-                tileEntity.buildCache();
+                blockEntity.buildCache();
                 world.blockUpdateEvent(x, y, z);
                 cir.cancel();
             }

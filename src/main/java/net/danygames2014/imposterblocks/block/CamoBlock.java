@@ -23,13 +23,13 @@ public class CamoBlock extends TemplateBlockWithEntity implements Wrenchable {
 
     @Override
     public int getTextureId(BlockView blockView, int x, int y, int z, int side) {
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) blockView.getBlockEntity(x, y, z);
+        CamoBlockTileEntity blockEntity = (CamoBlockTileEntity) blockView.getBlockEntity(x, y, z);
 
-        if (!tileEntity.cached) {
-            tileEntity.buildCache();
+        if (!blockEntity.cached) {
+            blockEntity.buildCache();
         }
 
-        return tileEntity.textureIdCache[side];
+        return blockEntity.textureIdCache[side];
     }
 
     @Override
@@ -38,26 +38,26 @@ public class CamoBlock extends TemplateBlockWithEntity implements Wrenchable {
     }
 
     @Override
-    public boolean isOpaque() { // Slight Performance Impact, fixes Glass, Leaves etc. causing x-ray glitch
+    public boolean isOpaque() {
         return false;
     }
 
     @Override
     public boolean wrenchRightClick(ItemStack stack, PlayerEntity player, boolean isSneaking, World world, int x, int y, int z, int side, WrenchMode wrenchMode) {
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
+        CamoBlockTileEntity blockEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
 
         if (wrenchMode == WrenchModeListener.MODE_TEXTURE) {
-            tileEntity.cycleTextureOnSide(side);
+            blockEntity.cycleTextureOnSide(side);
         } else if (wrenchMode == WrenchModeListener.MODE_DEBUG) {
-            player.sendMessage("Side : " + side + " | Texture : " + tileEntity.textureIdentifier[side] + " | Meta : " + tileEntity.textureMeta[side] + " | Cache : " + tileEntity.textureIdCache[side]);
+            player.sendMessage("Side : " + side + " | Texture : " + blockEntity.textureIdentifier[side] + " | Meta : " + blockEntity.textureMeta[side] + " | Cache : " + blockEntity.textureIdCache[side]);
         }
 
         world.blockUpdateEvent(x, y, z); // Update The Block
-        
+
         return true;
     }
 
-    //    @Override
+//    @Override
 //    public int getColorMultiplier(BlockView blockView, int x, int y, int z) { // Fixes Leaves Coloring
 //        return BlockRegistry.INSTANCE.get(Namespace.MINECRAFT.id("leaves")).getColorMultiplier(blockView, x, y, z);
 //    }

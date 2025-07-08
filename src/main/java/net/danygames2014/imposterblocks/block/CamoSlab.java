@@ -20,7 +20,7 @@ public class CamoSlab extends CamoBlock implements Wrenchable {
 
     @Override
     public void updateBoundingBox(BlockView blockView, int x, int y, int z) {
-        switch (blockView.getBlockMeta(x, y, z)){
+        switch (blockView.getBlockMeta(x, y, z)) {
             case 0 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
             case 1 -> this.setBoundingBox(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
             case 2 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
@@ -32,19 +32,19 @@ public class CamoSlab extends CamoBlock implements Wrenchable {
 
     @Override
     public void onSteppedOn(World world, int x, int y, int z, Entity entity) {
-        if (entity instanceof PlayerEntity) {
-            CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
+        if (entity instanceof PlayerEntity player) {
+            CamoBlockTileEntity blockEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
             int chompiness = 0;
 
             for (int i = 0; i < 6; i++) {
-                if (tileEntity.textureIdentifier[i].path.equals("carved_pumpkin") && tileEntity.textureSide[i] == 3) {
+                if (blockEntity.textureIdentifier[i].path.equals("carved_pumpkin") && blockEntity.textureSide[i] == 3) {
                     chompiness += 1;
                 }
             }
 
             if (chompiness > 0) {
                 entity.damage(null, chompiness * 2);
-                ((PlayerEntity) entity).sendMessage("CHOMP!");
+                player.sendMessage("CHOMP!");
             }
         }
     }
@@ -53,19 +53,19 @@ public class CamoSlab extends CamoBlock implements Wrenchable {
     public boolean wrenchRightClick(ItemStack stack, PlayerEntity player, boolean isSneaking, World world, int x, int y, int z, int side, WrenchMode wrenchMode) {
         super.wrenchRightClick(stack, player, isSneaking, world, x, y, z, side, wrenchMode);
 
-        CamoBlockTileEntity tileEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
+        CamoBlockTileEntity blockEntity = (CamoBlockTileEntity) world.getBlockEntity(x, y, z);
 
         if (wrenchMode == WrenchMode.MODE_ROTATE) {
-            int meta = world.getBlockMeta(x,y,z)+1;
+            int meta = world.getBlockMeta(x, y, z) + 1;
             world.setBlockMetaWithoutNotifyingNeighbors(x, y, z, meta > 5 ? 0 : meta);
             world.blockUpdateEvent(x, y, z);
         }
 
-        tileEntity.cancelRemoval();
-        world.setBlockEntity(x, y, z, tileEntity);
+        blockEntity.cancelRemoval();
+        world.setBlockEntity(x, y, z, blockEntity);
 
         world.blockUpdateEvent(x, y, z); // Update The Block
-        
+
         return true;
     }
 

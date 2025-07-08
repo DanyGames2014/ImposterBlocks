@@ -1,6 +1,6 @@
 package net.danygames2014.imposterblocks.init;
 
-import net.danygames2014.imposterblocks.item.Wrench;
+import net.danygames2014.imposterblocks.item.CamoWrench;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
@@ -16,6 +16,6 @@ public class ItemListener {
 
     @EventListener
     public void registerWrench(ItemRegistryEvent event) {
-        wrench = new Wrench(NAMESPACE.id("wrench")).setTranslationKey(NAMESPACE, "wrench");
+        wrench = new CamoWrench(NAMESPACE.id("wrench")).setTranslationKey(NAMESPACE, "wrench");
     }
 }
